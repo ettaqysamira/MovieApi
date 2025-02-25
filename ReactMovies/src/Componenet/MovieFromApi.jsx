@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { FaRegHeart } from "react-icons/fa"
+
 
 const API_KEY = "9358d6e4ce985a8bcd7b6f5ba7160bae";
 const MAIN_URL = "https://api.themoviedb.org/3";
 const API_ALL_MOVIES = `${MAIN_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${API_KEY}`;
 const API_SEARCH_MOVIES = `${MAIN_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=`;
+
 
 const FetchApiTMDB = () => {
   const [movies, setMovies] = useState([]);
@@ -36,7 +39,7 @@ const FetchApiTMDB = () => {
 
   return (
     <div className="w mx-auto">
-      <h1 className="text-center text-2xl font-bold my-4">Movies</h1>
+      <h1 className="text-center text-2xl font-bold my-4 text-red-700 pt-7">Movies</h1>
 
       
       <div className="text-center mb-4">
@@ -53,13 +56,17 @@ const FetchApiTMDB = () => {
       <div className="flex flex-wrap justify-center">
         {movies.length > 0 ? (
           movies.map((movie) => (
-            <div key={movie.id} className="w-52 m-3">
+            <div key={movie.id} className="w-60 h-96 m-3 ">
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                className="w-full rounded-xl"
+                className="w-full h-5/6 rounded-xl"
               />
-              <h3 className="text-center mt-2">{movie.title}</h3>
+              <div>
+              
+              <FaRegHeart className="size-7 float-right my-4 text-white "/>
+
+              </div>
             </div>
           ))
         ) : (
@@ -67,7 +74,7 @@ const FetchApiTMDB = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default FetchApiTMDB

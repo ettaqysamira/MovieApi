@@ -1,14 +1,23 @@
-import { useState } from 'react'
-import NavBar from './NavBar'
-import FetchApiTMDB from './MovieFromApi'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import NavBar from './Componenet/NavBar'
+import FetchApiTMDB from './Componenet/MovieFromApi'
+import AddMovieForm from './Componenet/AddMovieForm'
+import GetMoviesFromBDD from './Componenet/GetMoviesFromBDD'
+import Favorites from './Componenet/Favorites'
 import './App.css'
 
 function App() {
-
   return (
     <>
-     <NavBar/>
-     <FetchApiTMDB/> 
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<FetchApiTMDB />} />
+          <Route path='/add' element={<AddMovieForm />} />
+          <Route path='/getAdd' element={<GetMoviesFromBDD />} />
+          <Route path='/getAdd/favoris' element={<Favorites />} /> 
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
