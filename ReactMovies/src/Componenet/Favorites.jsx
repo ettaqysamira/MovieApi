@@ -28,7 +28,7 @@ const Favorites = () => {
             </div>
           ))
         ) : (
-          <p className="text-center">Aucun film en favoris.</p>
+          <p className="text-center">Aucun film en favoris</p>
         )}
       </div>
     </>
