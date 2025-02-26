@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([])
 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || []
-    setFavorites(savedFavorites)
+    fetchFavorites()
   }, [])
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/movies/favorites')
+      setFavorites(response.data)
+    } catch (error) {
+      console.error("Error get favoris :", error)
+    }
+  }
 
   return (
     <>
@@ -23,7 +32,7 @@ const Favorites = () => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Favorites
